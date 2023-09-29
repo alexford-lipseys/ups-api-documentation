@@ -8800,7 +8800,6 @@
         "type": "object",
         "required": [
           "GraphicImage",
-          "GraphicImagePart",
           "ImageFormat"
         ],
         "properties": {
