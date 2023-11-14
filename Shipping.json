@@ -8240,6 +8240,9 @@
       "ShipmentResults_NegotiatedRateCharges": {
         "type": "object",
         "properties": {
+          "BaseServiceCharge": {
+            "$ref": "#/components/schemas/NegotiatedRateCharges_BaseServiceCharge"
+          },
           "ItemizedCharges": {
             "type": "array",
             "items": {
@@ -8264,6 +8267,34 @@
         },
         "description": "Negotiated Rates Charge Container.  For tiered rates and promotional discounts, if a particular shipment based on zone, origin, destination or even shipment size doesn't qualify for the existing discount then no negotiated rates container will be returned. Published rates will be the applicable rate.",
         "maximum": 1
+      },
+      "NegotiatedRateCharges_BaseServiceCharge": {
+        "type": "object",
+        "maximum": 1,
+        "required": [
+          "CurrencyCode",
+          "MonetaryValue"
+        ],
+        "properties": {
+          "CurrencyCode": {
+            "description": "Base service charge currency code.",
+            "maximum": 1,
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 3
+          },
+          "MonetaryValue": {
+            "description": "Base service charge monetary value.  Valid values are from 0 to 9999999999999999.99",
+            "maximum": 1,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 19
+          }
+        },
+        "xml": {
+          "name": "BaseServiceCharge"
+        },
+        "description": "Base service charge container. Account Based Rates info."
       },
       "NegotiatedRateCharges_ItemizedCharges": {
         "type": "object",
