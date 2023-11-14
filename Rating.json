@@ -4888,10 +4888,7 @@
             "maxLength": 2
           },
           "ServiceSummary": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TimeInTransit_ServiceSummary"
-            }
+            "$ref": "#/components/schemas/TimeInTransit_ServiceSummary"
           },
           "AutoDutyCode": {
             "description": "Required output for International requests. If Documents indicator is set for Non-document a duty is automatically calculated. The possible values to be returned are: 01 - Dutiable02 - Non-Dutiable03 - Low-value04 - Courier Remission05 - Gift06 - Military07 - Exception08 - Line Release09 - Section 321 low value.",
