@@ -4315,6 +4315,9 @@
       "RatedShipment_NegotiatedRateCharges": {
         "type": "object",
         "properties": {
+          "BaseServiceCharge": {
+            "$ref": "#/components/schemas/NegotiatedRateCharges_BaseServiceCharge"
+          },
           "ItemizedCharges": {
             "type": "array",
             "items": {
@@ -4342,6 +4345,34 @@
         ],
         "description": "Negotiated Rate Charges Container.  For tiered rates and promotional discounts, if a particular shipment based on zone, origin, destination or even shipment size doesn't qualify for the existing discount then no negotiated rates container will be returned. Published rates will be the applicable rate.",
         "maximum": 1
+      },
+      "NegotiatedRateCharges_BaseServiceCharge": {
+        "type": "object",
+        "maximum": 1,
+        "required": [
+          "CurrencyCode",
+          "MonetaryValue"
+        ],
+        "properties": {
+          "CurrencyCode": {
+            "description": "The IATA currency code associated with the base service charge costs for the shipment.",
+            "maximum": 1,
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 3
+          },
+          "MonetaryValue": {
+            "description": "The base value of the specific service for the shipment. This is equal to transportation charges - fuel surcharges.",
+            "maximum": 1,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 19
+          }
+        },
+        "xml": {
+          "name": "BaseServiceCharge"
+        },
+        "description": "Base Service Charge Container.  These charges would be returned only when subversion is greater than or equal to unknown version"
       },
       "NegotiatedRateCharges_ItemizedCharges": {
         "type": "object",
@@ -4735,6 +4766,18 @@
       "RatedPackage_NegotiatedCharges": {
         "type": "object",
         "properties": {
+          "BaseServiceCharge": {
+            "$ref": "#/components/schemas/RatedShipment_BaseServiceCharge"
+          },
+          "TransportationCharges": {
+            "$ref": "#/components/schemas/RatedShipment_TransportationCharges"
+          },
+          "ServiceOptionsCharges": {
+            "$ref": "#/components/schemas/RatedPackage_ServiceOptionsCharges"
+          },
+          "TotalCharge": {
+            "$ref": "#/components/schemas/RatedShipment_TotalCharges"
+          },
           "ItemizedCharges": {
             "type": "array",
             "items": {
