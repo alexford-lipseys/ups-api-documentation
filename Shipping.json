@@ -2057,8 +2057,25 @@
               }
             }
           },
+          "400": {
+            "description": "Invalid Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
           "401": {
-            "description": "Unauthorized Request"
+            "description": "Unauthorized Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
           }
         }
       }
@@ -2118,7 +2135,19 @@
             "description": "The shipment's identification number \nAlpha-numeric. Must pass 1Z rules. Must be \nupper case. Length 18",
             "required": true
           }
-        ],
+          
+        ], 
+        "requestBody": {
+          "description": "Generate sample code for popular API requests by selecting an example below. To view a full sample request and response, first click \"Authorize\" and enter your application credentials, then populate the required parameters above and click \"Try it out\".",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VOIDSHIPMENTRequestWrapper"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "successful operation",
@@ -2135,13 +2164,20 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/errorResponse"
+                  "$ref": "#/components/schemas/ErrorResponse"
                 }
               }
             }
           },
           "401": {
-            "description": "Unauthorized Request"
+            "description": "Unauthorized Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
           }
         }
       }
@@ -2211,8 +2247,25 @@
               }
             }
           },
+          "400": {
+            "description": "Invalid Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
           "401": {
-            "description": "Unauthorized Request"
+            "description": "Unauthorized Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
           }
         }
       }
@@ -10500,18 +10553,32 @@
         },
         "description": "A range of time the package was picked up."
       },
-      "errorResponse": {
+      "ErrorResponse": {
         "type": "object",
+        "required": [
+          "Response"
+        ],
         "properties": {
-          "errors": {
+          "Response": {
+            "$ref": "#/components/schemas/ErrorResponse_Response"
+          }
+        }
+      },
+      "ErrorResponse_Response": {
+        "type": "object",
+        "required": [
+          "Errors"
+        ],
+        "properties": {
+          "Errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/errors"
+              "$ref": "#/components/schemas/ErrorResponse_Response_Errors"
             }
           }
         }
       },
-      "errors": {
+      "ErrorResponse_Response_Errors": {
         "type": "object",
         "properties": {
           "code": {
